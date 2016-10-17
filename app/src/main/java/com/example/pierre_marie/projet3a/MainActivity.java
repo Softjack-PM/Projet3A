@@ -22,13 +22,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 // Map is ready so do some stuff with map object
     }
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
