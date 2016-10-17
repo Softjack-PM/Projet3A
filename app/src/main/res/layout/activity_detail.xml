@@ -8,10 +8,7 @@
         android:layout_height="wrap_content"
         android:text="@string/detail"
         android:id="@+id/textView"
-        android:background="#F78545"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
+        android:background="#F78545"/>
 
 
 </LinearLayout>
