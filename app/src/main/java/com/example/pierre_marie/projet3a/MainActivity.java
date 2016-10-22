@@ -7,8 +7,13 @@ import android.view.Menu;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
+
+    private GoogleMap mMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,9 +22,15 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+
+
+
     @Override
-    public void onMapReady(GoogleMap map) {
-// Map is ready so do some stuff with map object
+    public void onMapReady(GoogleMap GoogleMap) {
+        mMap = GoogleMap;
+        LatLng gardanne = new LatLng(-43.45, 5.4667);
+        mMap.addMarker(new MarkerOptions().position(gardanne).title("Mines St Etienne"));
+        //moovecamera
     }
 
     @Override
