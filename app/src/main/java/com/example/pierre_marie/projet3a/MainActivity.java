@@ -21,6 +21,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
     }
 
 
@@ -28,8 +29,9 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap GoogleMap) {
         mMap = GoogleMap;
-        LatLng gardanne = new LatLng(-43.45, 5.4667);
+        LatLng gardanne = new LatLng(43.45, 5.46);
         mMap.addMarker(new MarkerOptions().position(gardanne).title("Mines St Etienne"));
+        //mMap.getUiSettings().setZoomGesturesEnabled(true);
         //moovecamera
     }
 
