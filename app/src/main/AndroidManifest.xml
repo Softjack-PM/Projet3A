@@ -15,7 +15,7 @@
         <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
         <meta-data
-            android:name="com.google.android.geo.API.KEY"
+            android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD__aGLsu-9wD44ODzLIy16t2e3o46kScE" />
         <activity android:name=".MainActivity">
             <intent-filter>
