@@ -1,5 +1,6 @@
 package com.example.pierre_marie.projet3a;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -80,6 +81,13 @@ public class ItemFragment extends Fragment {
         return View;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
+
+            mTunnel = (Interf) context;
+
+    }
 
 }

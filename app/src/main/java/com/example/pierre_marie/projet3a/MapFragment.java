@@ -1,5 +1,6 @@
 package com.example.pierre_marie.projet3a;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -69,7 +70,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     }
 
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
+
+        mTunnel = (Interf) context;
+
+    }
 
 
 
