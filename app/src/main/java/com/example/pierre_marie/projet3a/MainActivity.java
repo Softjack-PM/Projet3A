@@ -18,15 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
-
 public class MainActivity extends AppCompatActivity   {
 
 
     private static String URL_API = "https://www.data.gouv.fr/s/resources/monuments-historiques-francais/20150408-163911/monuments.json";
 
+    public ListView mListView;
     private ArrayList<ListSample> list;
-    private ListView listView;
     private List<Monument> monumentInfos;
 
     private RequestQueue mRequestQueue;
@@ -41,11 +39,13 @@ public class MainActivity extends AppCompatActivity   {
         Button btn_au = (Button) findViewById(R.id.btn_autre);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        listView = (ListView) findViewById(R.id.listView);//à mettre dans le fragment
+        monumentInfos=new ArrayList<>();
         mRequestQueue = VolleyQueue.getInstance(MainActivity.this);
         mHttpRequestJson = new HttpRequestJson();
 
-        getHttpRequestJson().LaunchHttpRequestJson(mRequestQueue, MainActivity.this, URL_API);
+        mHttpRequestJson.LaunchHttpRequestJson(mRequestQueue, MainActivity.this, URL_API);
+
+        monumentInfos = mHttpRequestJson.getMonumentList();
 
         btn_list.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,14 +106,27 @@ public class MainActivity extends AppCompatActivity   {
             monumentInfos = mHttpRequestJson.getMonumentList();
             if (!monumentInfos.isEmpty()) {
                 list = new ArrayList<>();
+
                 for(Monument monument : monumentInfos) {
                     ListSample item = new ListSample(monument.getName(), monument.getLatitude(), monument.getLongitude());
                     list.add(item);
                 }
                 ListSampleAdapter adapter = new ListSampleAdapter(MainActivity.this, list);
-                listView.setAdapter(adapter);
+                //mListView.setAdapter(adapter);
             }
         }
+    }
+
+
+    public void sendHttpRequestFromFragment() {
+        final MainActivity activity = this;
+        getHttpRequestJson().LaunchHttpRequestJson(mRequestQueue, activity, URL_API);
+    }
+
+
+    public List<Monument> getMonumentList() {
+
+        return monumentInfos;
     }
 
 
@@ -135,8 +148,6 @@ public class MainActivity extends AppCompatActivity   {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
 
 
 }

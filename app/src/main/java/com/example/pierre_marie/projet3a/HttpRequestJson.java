@@ -60,6 +60,7 @@ public class HttpRequestJson {
                     Toast.makeText(CurrentActivity, "Données recupérées", Toast.LENGTH_SHORT).show();
                     CurrentActivity.httpRequestReceived(true);
 
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -79,4 +80,6 @@ public class HttpRequestJson {
     public List<Monument> getMonumentList() {
         return monumentInfo;
     }
+
+
 }

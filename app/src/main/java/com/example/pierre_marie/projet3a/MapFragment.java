@@ -14,6 +14,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.List;
+
 import static com.example.pierre_marie.projet3a.R.id.map;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
@@ -22,35 +24,20 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private MapView mMapView;
     private GoogleMap mMap;
+    private List<Monument> monumentInfos;
     // TODO: Rename and change types of parameters
 
-
+    private Interf mTunnel;
 
     public MapFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public void onMapReady(GoogleMap GoogleMap) {
-        mMap = GoogleMap;
-        //mMap.getUiSettings().setZoomControlsEnabled(true);
-
-        LatLng gardanne = new LatLng(43.45, 5.46);
-        mMap.addMarker(new MarkerOptions().position(gardanne).title("Mines St Etienne"));
-        //mMap.getUiSettings().setZoomGesturesEnabled(true);
-        //moovecamera
-        mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(10, 10))
-                .title("Hello world"));
-    }
-
-
-
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_map, container, false);
+        monumentInfos = mTunnel.getMonumentList();
         return root;
     }
 
@@ -64,6 +51,27 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
 
     }
+
+    @Override
+    public void onMapReady(GoogleMap GoogleMap) {
+        mMap = GoogleMap;
+        //mMap.getUiSettings().setZoomControlsEnabled(true);
+
+        LatLng gardanne = new LatLng(43.45, 5.46);
+        mMap.addMarker(new MarkerOptions().position(gardanne).title("Mines St Etienne"));
+        //mMap.getUiSettings().setZoomGesturesEnabled(true);
+        //moovecamera
+        for (Monument monument : monumentInfos) {
+            LatLng latCourante = new LatLng(monument.getLatitude(), monument.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(latCourante).title(monument.getName()));
+
+        }
+    }
+
+
+
+
+
 
 
 
