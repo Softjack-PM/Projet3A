@@ -10,24 +10,42 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 
-import static com.example.pierre_marie.projet3a.R.id.btn_liste;
+import com.android.volley.RequestQueue;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 
 public class MainActivity extends AppCompatActivity   {
 
 
+    private static String URL_API = "https://www.data.gouv.fr/s/resources/monuments-historiques-francais/20150408-163911/monuments.json";
+
+    private ArrayList<ListSample> list;
+    private ListView listView;
+    private List<Monument> monumentInfos;
+
+    private RequestQueue mRequestQueue;
+    private HttpRequestJson mHttpRequestJson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btn_list = (Button) findViewById(btn_liste);
+        Button btn_list = (Button) findViewById(R.id.btn_liste);
         Button btn_mp = (Button) findViewById(R.id.btn_map);
         Button btn_au = (Button) findViewById(R.id.btn_autre);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        listView = (ListView) findViewById(R.id.listView);//à mettre dans le fragment
+        mRequestQueue = VolleyQueue.getInstance(MainActivity.this);
+        mHttpRequestJson = new HttpRequestJson();
 
+        getHttpRequestJson().LaunchHttpRequestJson(mRequestQueue, MainActivity.this, URL_API);
 
         btn_list.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +94,26 @@ public class MainActivity extends AppCompatActivity   {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public HttpRequestJson getHttpRequestJson() {
+        return mHttpRequestJson;
+    }
+
+    public void httpRequestReceived(boolean requestReceived) {
+
+        if (requestReceived) {
+            monumentInfos = mHttpRequestJson.getMonumentList();
+            if (!monumentInfos.isEmpty()) {
+                list = new ArrayList<>();
+                for(Monument monument : monumentInfos) {
+                    ListSample item = new ListSample(monument.getName(), monument.getLatitude(), monument.getLongitude());
+                    list.add(item);
+                }
+                ListSampleAdapter adapter = new ListSampleAdapter(MainActivity.this, list);
+                listView.setAdapter(adapter);
+            }
+        }
     }
 
 
