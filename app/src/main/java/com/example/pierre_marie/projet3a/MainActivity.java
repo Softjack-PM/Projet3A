@@ -11,18 +11,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-
 import static com.example.pierre_marie.projet3a.R.id.btn_liste;
 
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback  {
+public class MainActivity extends AppCompatActivity   {
 
-    private GoogleMap mMap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +27,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Button btn_au = (Button) findViewById(R.id.btn_autre);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-               .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+
 
         btn_list.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +54,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
         });
+
+        btn_au.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                com.example.pierre_marie.projet3a.InfoFragment fragment3 = new com.example.pierre_marie.projet3a.InfoFragment();
+                fragmentTransaction.add(R.id.container, fragment3);
+                fragmentTransaction.commit();
+            }
+
+
+        });
     }
 
 
@@ -74,14 +79,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
 
-    @Override
-    public void onMapReady(GoogleMap GoogleMap) {
-        mMap = GoogleMap;
-        LatLng gardanne = new LatLng(43.45, 5.46);
-        mMap.addMarker(new MarkerOptions().position(gardanne).title("Mines St Etienne"));
-        //mMap.getUiSettings().setZoomGesturesEnabled(true);
-        //moovecamera
-    }
+
 
 
 
