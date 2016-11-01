@@ -16,6 +16,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:id="@+id/textViewName"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:id="@+id/textViewLat" />
 
         <TextView
@@ -23,6 +29,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:id="@+id/textViewLong" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewImage" />
 
     </LinearLayout>
 

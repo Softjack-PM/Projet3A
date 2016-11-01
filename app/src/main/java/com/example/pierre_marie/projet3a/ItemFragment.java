@@ -82,6 +82,7 @@ public class ItemFragment extends Fragment implements SearchView.OnQueryTextList
 
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), DetailActivity.class);
+                intent.putExtra("Monument_name", mDatalist.get(position).getName());
                 intent.putExtra("Monument_latitude", Double.toString(mDatalist.get(position).getLatitude()));
                 intent.putExtra("Monument_longitude", Double.toString(mDatalist.get(position).getLongitude()));
 

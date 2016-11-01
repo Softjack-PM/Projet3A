@@ -11,17 +11,17 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.detail_toolbar);
-        setSupportActionBar(myToolbar);
-        TextView name = (TextView) findViewById(R.id.Name);
-        TextView latitude = (TextView) findViewById(R.id.Lat);
-        TextView longitude = (TextView) findViewById(R.id.Long);
-        String dataFromActivity = getIntent().getStringExtra("Monument_lat");
-        String dataFromActivity2 = getIntent().getStringExtra("Monument_long");
+        TextView name = (TextView) findViewById(R.id.textViewName);
+        TextView latitude = (TextView) findViewById(R.id.textViewLat);
+        TextView longitude = (TextView) findViewById(R.id.textViewLong);
+        TextView image = (TextView) findViewById(R.id.textViewImage);
+        String dataFromActivity = getIntent().getStringExtra("Monument_latitude");
+        String dataFromActivity2 = getIntent().getStringExtra("Monument_longitude");
         String dataFromActivity3 = getIntent().getStringExtra("Monument_name");
 
         latitude.setText("Latitude : " + dataFromActivity);
         longitude.setText("Longitude : " + dataFromActivity2);
         name.setText("Nom du Monument : " + dataFromActivity3);
+        image.setText("No picture");
     }
 }
