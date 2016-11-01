@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/textfromeinfo"
+            android:text="@string/textfrominfo"
             android:id="@+id/textView"
             android:layout_gravity="center"
             android:gravity="center"

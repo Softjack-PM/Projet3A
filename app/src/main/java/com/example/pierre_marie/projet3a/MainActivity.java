@@ -20,37 +20,43 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements Interf   {
 
-
+    //Adresse le d'API récupérée
     private static String URL_API = "https://www.data.gouv.fr/s/resources/monuments-historiques-francais/20150408-163911/monuments.json";
+
 
     private ArrayList<ListSample> list;
     private List<Monument> monumentInfos;
 
-    private RequestQueue mRequestQueue;
-    private HttpRequestJson mHttpRequestJson;
+    private RequestQueue mRequestQueue; //Queue de requête
+    private HttpRequestJson mHttpRequestJson; //Requète Json
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Boutons situés en dessous de la toolbar
         Button btn_list = (Button) findViewById(R.id.btn_liste);
         Button btn_mp = (Button) findViewById(R.id.btn_map);
         Button btn_au = (Button) findViewById(R.id.btn_autre);
+        //Toolbar contenant le titre de l'application ainsi qu'un bouton refresh qui redirrige vers la liste
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+        //Recupération des données depuis le fichier JSON
         monumentInfos=new ArrayList<>();
         mRequestQueue = VolleyQueue.getInstance(MainActivity.this);
         mHttpRequestJson = new HttpRequestJson();
         mHttpRequestJson.LaunchHttpRequestJson(mRequestQueue, MainActivity.this, URL_API);
         monumentInfos = mHttpRequestJson.getMonumentList();
 
+        //On accède au fragment Info comme page d'accueil
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         com.example.pierre_marie.projet3a.InfoFragment fragment3 = new com.example.pierre_marie.projet3a.InfoFragment();
         fragmentTransaction.add(R.id.container, fragment3);
-        fragmentTransaction.commit(); //force le démarage de l'application sur le fragment info
+        fragmentTransaction.commit();
 
+        //On définit la redirection des boutons vers les fragments concernés
         btn_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements Interf   {
         return mHttpRequestJson;
     }
 
+    //Reception d'une requete HTTP
     public void httpRequestReceived(boolean requestReceived) {
 
         if (requestReceived) {

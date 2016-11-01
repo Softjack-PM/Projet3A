@@ -42,7 +42,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         return root;
     }
 
-
+    //Mise en place du fragment map
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -53,18 +53,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     }
 
+    //Remplissage de la map
     @Override
     public void onMapReady(GoogleMap GoogleMap) {
         mMap = GoogleMap;
-        //mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
 
-        LatLng gardanne = new LatLng(43.45, 5.46);
-        mMap.addMarker(new MarkerOptions().position(gardanne).title("Mines St Etienne"));
-        //mMap.getUiSettings().setZoomGesturesEnabled(true);
-        //moovecamera
+
+
         for (Monument monument : monumentInfos) {
-            LatLng latCourante = new LatLng(monument.getLatitude(), monument.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(latCourante).title(monument.getName()));
+            LatLng Position = new LatLng(monument.getLatitude(), monument.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(Position).title(monument.getName()));
 
         }
     }

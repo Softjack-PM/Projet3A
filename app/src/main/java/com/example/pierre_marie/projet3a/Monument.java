@@ -6,6 +6,7 @@ package com.example.pierre_marie.projet3a;
 
 import com.google.gson.annotations.SerializedName;
 
+//Défini un élément Monument
 public class Monument {
 
     @SerializedName("name")

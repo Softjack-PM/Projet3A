@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-
+//Gere l'affichage de la liste
 public class ListSampleAdapter extends ArrayAdapter<ListSample>{
 
     public ListSampleAdapter(Context context, List<ListSample> monument) {

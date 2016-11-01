@@ -6,19 +6,16 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-
+//Fragment contenant la listView
 public class ItemFragment extends Fragment implements SearchView.OnQueryTextListener{
 
 
@@ -39,6 +36,7 @@ public class ItemFragment extends Fragment implements SearchView.OnQueryTextList
         return fragment;
     }
 
+    //Création de la list View dans le fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,6 +72,7 @@ public class ItemFragment extends Fragment implements SearchView.OnQueryTextList
         mSearchView.setQueryHint("Search Monuments");
     }
 
+    //Prise en compte d'un clic sur un élément de la liste puis redirection vers la page de détails
     public void itemlistclicked(View v) {
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){

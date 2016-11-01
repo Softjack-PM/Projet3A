@@ -10,6 +10,8 @@ import com.android.volley.toolbox.Volley;
  * Created by Pierre-Marie on 30/10/2016.
  */
 
+
+//Gère la queue
 public class VolleyQueue {
     private static RequestQueue ourInstance;
 

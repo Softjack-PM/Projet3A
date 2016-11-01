@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+//Cette class Java permet de gérer les requêtes HTTP vers le fichier Json
 public class HttpRequestJson {
 
     private List<Monument> monumentInfo;
@@ -67,6 +68,7 @@ public class HttpRequestJson {
 
     }
 
+    //Fonction permettant de récuperer la liste des monuments.
     public List<Monument> getMonumentList() {
         return monumentInfo;
     }
