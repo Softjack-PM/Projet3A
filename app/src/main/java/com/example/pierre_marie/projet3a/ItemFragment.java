@@ -68,7 +68,7 @@ public class ItemFragment extends Fragment {
 
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), DetailActivity.class);
-                intent.putExtra("Monument", mDatalist.get(position).getLatitude());
+                intent.putExtra("Monument", Double.toString(mDatalist.get(position).getLatitude()));
 
                 startActivity(intent);
             }
