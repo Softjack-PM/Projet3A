@@ -24,7 +24,7 @@ public class ItemFragment extends Fragment implements SearchView.OnQueryTextList
 
     public ListView mListView;
     private SearchView mSearchView;
-    private List<Monument> mDatalist;
+    private List<Monument> mMonumentlist;
     private ArrayList<ListSample> list = new ArrayList<>();
     private ListSampleAdapter mAdapter;
     private Interf mTunnel;
@@ -46,10 +46,10 @@ public class ItemFragment extends Fragment implements SearchView.OnQueryTextList
         mListView = (ListView)View.findViewById(R.id.listView);
         mSearchView = (SearchView)View.findViewById(R.id.searchView);
 
-        mDatalist = mTunnel.getMonumentList();
+        mMonumentlist = mTunnel.getMonumentList();
         list = new ArrayList<>();
-        if(!mDatalist.isEmpty()) {
-            for (Monument monument : mDatalist) {
+        if(!mMonumentlist.isEmpty()) {
+            for (Monument monument : mMonumentlist) {
                 ListSample item = new ListSample(
                         monument.getName(),
                         monument.getLatitude(),
@@ -82,9 +82,9 @@ public class ItemFragment extends Fragment implements SearchView.OnQueryTextList
 
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), DetailActivity.class);
-                intent.putExtra("Monument_name", mDatalist.get(position).getName());
-                intent.putExtra("Monument_latitude", Double.toString(mDatalist.get(position).getLatitude()));
-                intent.putExtra("Monument_longitude", Double.toString(mDatalist.get(position).getLongitude()));
+                intent.putExtra("Monument_name", mMonumentlist.get(position).getName());
+                intent.putExtra("Monument_latitude", Double.toString(mMonumentlist.get(position).getLatitude()));
+                intent.putExtra("Monument_longitude", Double.toString(mMonumentlist.get(position).getLongitude()));
 
 
                 startActivity(intent);
