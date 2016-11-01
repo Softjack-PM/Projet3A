@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 
@@ -59,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements Interf   {
                 fragmentTransaction.add(R.id.container, fragment2);
                 fragmentTransaction.commit();
             }
-
 
         });
 
@@ -131,12 +131,26 @@ public class MainActivity extends AppCompatActivity implements Interf   {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_load:
-// User chose the refresh action, refresh the page
+                refresh();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+
+    public void refresh(){
+        Toast toast = Toast.makeText(this, "Reload", Toast.LENGTH_SHORT);
+        toast.show();
+
+        mHttpRequestJson.LaunchHttpRequestJson(mRequestQueue, MainActivity.this, URL_API);
+        monumentInfos = mHttpRequestJson.getMonumentList();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        com.example.pierre_marie.projet3a.ItemFragment fragment2 = new com.example.pierre_marie.projet3a.ItemFragment();
+        fragmentTransaction.add(R.id.container, fragment2);
+        fragmentTransaction.commit();
+    }
 
 }
