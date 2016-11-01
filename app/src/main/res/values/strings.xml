@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">Monuments App</string>
+    <string name="app_name">Monument App</string>
+    <string name="action_settings">Settings</string>
     <string name="action_load">Load</string>
+
     <string name="textfromeinfo">Monuments APP a été développé par : "\n" Mazard Léo et Nicolezeau Pierre-Marie"\n"(en étroite collaboration avec les Monuments Men!)</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
 </resources>

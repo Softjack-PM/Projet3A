@@ -130,9 +130,6 @@ public class MainActivity extends AppCompatActivity implements Interf   {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_load:
-// User chose the refresh action, refresh the page
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

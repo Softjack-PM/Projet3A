@@ -13,9 +13,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.pierre_marie.projet3a.R.id.latitude;
 import static com.example.pierre_marie.projet3a.R.id.listView;
-import static com.example.pierre_marie.projet3a.R.id.longitude;
 
 
 public class ItemFragment extends Fragment {
@@ -68,8 +66,9 @@ public class ItemFragment extends Fragment {
 
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), DetailActivity.class);
-                intent.putExtra("Monument", Double.toString(mDatalist.get(position).getLatitude()));
-
+                intent.putExtra("Monument_lat", Double.toString(mDatalist.get(position).getLatitude()));
+                intent.putExtra("Monument_long", Double.toString(mDatalist.get(position).getLongitude()));
+                intent.putExtra("Monument_name", (mDatalist.get(position).getName()));
                 startActivity(intent);
             }
         });
