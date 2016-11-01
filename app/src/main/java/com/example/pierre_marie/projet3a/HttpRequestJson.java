@@ -7,8 +7,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,10 +14,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by Pierre-Marie on 30/10/2016.
- */
 
 public class HttpRequestJson {
 
@@ -37,12 +31,9 @@ public class HttpRequestJson {
             public void onResponse(JSONArray response) {
 
                 try {
-                    Gson gson = new GsonBuilder().create();
-
-
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject informations = response.getJSONObject(i);
-//                        String proprietes = informations.getString("");
+
                         String nom = informations.getString("name");
                         String latitude = informations.getString("latitude");
                         String longitude = informations.getString("longitude");
@@ -51,7 +42,6 @@ public class HttpRequestJson {
                         monumentInfo.setName(nom);
                         monumentInfo.setLatitude(Double.parseDouble(latitude));
                         monumentInfo.setLongitude(Double.parseDouble(longitude));
-//                        Monument monumentInfo = gson.fromJson(proprietes,Monument.class);
 
                         getMonumentList().add(monumentInfo);
                     }

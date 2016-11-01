@@ -10,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 
 import com.android.volley.RequestQueue;
 
@@ -23,7 +22,6 @@ public class MainActivity extends AppCompatActivity implements Interf   {
 
     private static String URL_API = "https://www.data.gouv.fr/s/resources/monuments-historiques-francais/20150408-163911/monuments.json";
 
-    public ListView mListView;
     private ArrayList<ListSample> list;
     private List<Monument> monumentInfos;
 
@@ -39,13 +37,18 @@ public class MainActivity extends AppCompatActivity implements Interf   {
         Button btn_au = (Button) findViewById(R.id.btn_autre);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
         monumentInfos=new ArrayList<>();
         mRequestQueue = VolleyQueue.getInstance(MainActivity.this);
         mHttpRequestJson = new HttpRequestJson();
-
         mHttpRequestJson.LaunchHttpRequestJson(mRequestQueue, MainActivity.this, URL_API);
-
         monumentInfos = mHttpRequestJson.getMonumentList();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        com.example.pierre_marie.projet3a.InfoFragment fragment3 = new com.example.pierre_marie.projet3a.InfoFragment();
+        fragmentTransaction.add(R.id.container, fragment3);
+        fragmentTransaction.commit(); //force le démarage de l'application sur le fragment info
 
         btn_list.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,8 +90,6 @@ public class MainActivity extends AppCompatActivity implements Interf   {
         });
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -111,8 +112,6 @@ public class MainActivity extends AppCompatActivity implements Interf   {
                     ListSample item = new ListSample(monument.getName(), monument.getLatitude(), monument.getLongitude());
                     list.add(item);
                 }
-                ListSampleAdapter adapter = new ListSampleAdapter(MainActivity.this, list);
-                //mListView.setAdapter(adapter);
             }
         }
     }
@@ -125,26 +124,16 @@ public class MainActivity extends AppCompatActivity implements Interf   {
 
 
     public List<Monument> getMonumentList() {
-
         return monumentInfos;
     }
-
-
-
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
-// User chose the "Settings" item, show the app settings UI...
-                return true;
             case R.id.action_load:
 // User chose the refresh action, refresh the page
                 return true;
-            default: // If we got here, the user's action was not recognized.
-// Invoke the superclass to handle it.
+            default:
                 return super.onOptionsItemSelected(item);
         }
     }

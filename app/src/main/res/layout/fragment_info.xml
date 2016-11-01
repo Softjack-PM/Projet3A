@@ -8,8 +8,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,11 +23,11 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/ic_launcher"
+            android:layout_height="257dp"
+            android:src="@drawable/monuments_men"
             android:id="@+id/imageView"
-            android:layout_weight="0.07"
-            android:background="@android:color/white"/>
+            android:background="@android:color/white"
+            android:layout_weight="0.00" />
     </LinearLayout>
 
 </FrameLayout>

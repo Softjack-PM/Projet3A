@@ -9,9 +9,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by Pierre-Marie on 30/10/2016.
- */
 
 public class ListSampleAdapter extends ArrayAdapter<ListSample>{
 
